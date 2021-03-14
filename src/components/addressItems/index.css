@@ -1,0 +1,15 @@
+.AddressItems {
+    margin: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #e9ebee;
+    flex-direction: column;
+}
+
+.add-button {
+    margin-top: 10px;
+    width: 50px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}

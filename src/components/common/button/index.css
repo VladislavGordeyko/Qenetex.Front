@@ -1,0 +1,11 @@
+.contanier {
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    display: flex;
+}
+
+.button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

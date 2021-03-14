@@ -1,0 +1,31 @@
+.left-menu {
+    background-color: #e9ebee;
+    display: flex;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+}
+
+.menu-item-active {
+    background-color: #DCDCDC;
+}
+
+.text {
+    text-decoration: none;
+    color: black;
+}
+
+a:active {
+    color: red;
+}

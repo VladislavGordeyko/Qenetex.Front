@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect } from 'react';
 import './index.css';
 import './AddressItem.css';
-import {IAddress} from "../../api/models/Address";
 import AddressItem from './AddressItem';
-import AddressService from '../../api/services/AddressService';
 import Button from '../common/button';
+import { useStores } from '../../hooks/useStores';
+import { observer } from 'mobx-react';
+import Loader from '../common/loader' 
 
 /** Address table component */
 const AddressItems = () => {
-    const [addresses, setAddresses] = useState<IAddress[]>();
+    const { addressListStore: store } = useStores();
 
     /** fetch addresses from API */
     const fetchAddresses = async () => {
         try {
-            const res = await AddressService.list();
-            setAddresses(res.data);
+            await store.fetch()
         } catch (error) {
             console.log(error)
         }
@@ -24,26 +24,16 @@ const AddressItems = () => {
         fetchAddresses()
     }, [])
 
-    /** Send request to add address */
-    const addAddress = async () => {
-        try {
-            await AddressService.create({name: '123'});
-            fetchAddresses()
-        } catch (error) {
-            console.log(error)
-        }      
-    }
-
     return(
         <div className="AddressItems">
-            <Button onClick={addAddress} title="+" />
+            <Button onClick={() => store.addAddress()} title="+" />
             <div className="container-header">
                 <span  className="element">Id</span>
                 <span  className="element">Транзакции</span> 
             </div>
-            {addresses && addresses.map((item) => <AddressItem key={item.id} item={item} />)}
+            {store.addresses ? store.addresses.map((item) => <AddressItem key={item.id} item={item} />) : <Loader isLoading />}
         </div>
     )
 }
 
-export default AddressItems;
+export default observer(AddressItems);

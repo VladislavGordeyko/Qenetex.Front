@@ -3,11 +3,12 @@ import './AddressItem.css';
 import {IAddress} from "../../api/models/Address";
 import { Link } from 'react-router-dom';
 
-
+/** Props */
 interface IAddressItem {
     item: IAddress
 }
 
+/** Address item Component */
 const AddressItem = ({item} : IAddressItem) => {
     const getTransactionNumber = () => {
         return item.transactions_from.length + item.transactions_to.length
